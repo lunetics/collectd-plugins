@@ -30,10 +30,9 @@
 #
 ###
 
-HOST=${COLLECTD_HOSTNAME:=`hostname -f`}
 while true
 do
-        `which sudo` `which ipmitool` sensor | awk -v host=`hostname -f` -v interval=300 -F'|' 'tolower($3) ~ /(volt|rpm|watt|degree)/ && $2 !~ /na/ {
+        `which sudo` `which ipmitool` sensor | awk -v host=${COLLECTD_HOSTNAME:=`hostname -f`} -v interval=${COLLECTD_INTERVAL:-10} -F'|' 'tolower($3) ~ /(volt|rpm|watt|degree)/ && $2 !~ /na/ {
         	if (tolower($3) ~ /volt/) type="voltage";
         	if (tolower($3) ~ /rpm/)  type="fanspeed";
         	if (tolower($3) ~ /watt/) type="power";
