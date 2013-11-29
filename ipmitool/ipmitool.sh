@@ -29,7 +29,7 @@
 # ...
 #
 ###
-
+PATH=/bin:/usr/bin/:/usr/local/bin/
 while true
 do
         `which sudo` `which ipmitool` sensor | awk -v host=${COLLECTD_HOSTNAME:=`hostname -f`} -v interval=${COLLECTD_INTERVAL:-10} -F'|' 'tolower($3) ~ /(volt|rpm|watt|degree)/ && $2 !~ /na/ {
