@@ -30,9 +30,7 @@
 #
 ###
 
-#HOST=localhost
-HOST=`hostname -f`
-INTERVAL=300
+HOST=${COLLECTD_HOSTNAME:=`hostname -f`}
 while true
 do
         sudo `which ipmitool` sensor | awk -v host=`hostname -f` -v interval=300 -F'|' 'tolower($3) ~ /(volt|rpm|watt|degree)/ && $2 !~ /na/ {
@@ -44,6 +42,6 @@ do
         	print "PUTVAL "host"/ipmitool/" type "/" $1 " interval=" interval  "N:" sprintf("%.4f",$2) ":U"  
         }'
 
-        sleep $INTERVAL || true;
+        sleep ${COLLECTD_INTERVAL:-10} || true;
 done
 
