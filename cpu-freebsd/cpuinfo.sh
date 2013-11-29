@@ -34,6 +34,7 @@
 NUM_CPUS=`/sbin/sysctl -n hw.ncpu`;
 while true
 do
+    CPU_FREQ=`/usr/local/bin/sudo /sbin/sysctl -n dev.cpu.0.freq`
 	for i in `seq 0 $(($NUM_CPUS -1))`
 	do
 	        /usr/local/bin/sudo /sbin/sysctl -n dev.cpu.$i.coretemp.tjmax dev.cpu.$i.coretemp.delta | awk -v cpunum=$i -v host=${COLLECTD_HOSTNAME:=`hostname -f`} -v interval=${COLLECTD_INTERVAL:-10} ' BEGIN { ORS="";}{
@@ -42,7 +43,7 @@ do
 	            value=sprintf("%.1f\n", ($0-$delta))
 	            print "PUTVAL "host"/cpu-" cpunum "/" "temperature-cpu interval=" interval  " N:" value
 	        }';
-		echo "PUTVAL ${COLLECTD_HOSTNAME:=`hostname -f`}/cpu-${i}/cpufreq interval=${COLLECTD_INTERVAL:-10} N:`/usr/local/bin/sudo /sbin/sysctl -n dev.cpu.0.freq`";
+		echo "PUTVAL ${COLLECTD_HOSTNAME:=`hostname -f`}/cpu-${i}/cpufreq interval=${COLLECTD_INTERVAL:-10} N:${CPU_FREQ}";
 	done
 
 	sleep ${COLLECTD_INTERVAL:-10} || true;
