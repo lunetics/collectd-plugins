@@ -38,8 +38,8 @@ do
         	if (tolower($3) ~ /rpm/)  type="fanspeed";
         	if (tolower($3) ~ /watt/) type="power";
         	if (tolower($3) ~ /degree/) type="temperature";
-        	gsub(/[ \t]*$/,"",$1) gsub(/[ \t-]+/,"_",$1);
-        	print "PUTVAL "host"/ipmitool/" type "/" $1 " interval=" interval  " N:" sprintf("%.4f",$2) ":U"
+        	gsub(/[ \t]*$/,"",$1) gsub(/[ \t-.]+/,"_",$1);
+        	print "PUTVAL "host"/ipmitool-" type "/" type "-" $1 " interval=" interval  " N:" sprintf("%.4f",$2) ":U"
         }'
 
         sleep ${COLLECTD_INTERVAL:-10} || true;
