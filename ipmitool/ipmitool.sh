@@ -12,11 +12,11 @@
 #       Freebsd: /usr/local/bin/ipmitool
 #       Linux: /usr/bin
 #   sudo entry for binary (ie. for sys account):
-#       sys   ALL = (root) NOPASSWD: /usr/local/sbin/MegaCli
+#       sys   ALL = (root) NOPASSWD: /usr/local/sbin/ipmitool
 #
 #
 # Typical usage:
-#   /etc/collect/ipmitool.sh
+#   /usr/local/collect-plugins/ipmitool/ipmitool.sh
 #
 # Typical output:
 #   PUTVAL <host>/ipmitool/temperature/System_Temp interval=300N:60.0000:U
