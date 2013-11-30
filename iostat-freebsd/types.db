@@ -1,0 +1,6 @@
+iostat_tql              value:GAUGE:0:U
+iostat_busy             value:GAUGE:0:U
+iostat_iops_complex     value:GAUGE:0:U
+iostat_iops             read:GAUGE:0:U, write:GAUGE:0:U
+iostat_kbps             read:GAUGE:0:U, write:GAUGE:0:U
+iostat_transaction_time read:GAUGE:0:U, write:GAUGE:0:U

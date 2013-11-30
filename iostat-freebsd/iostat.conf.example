@@ -1,0 +1,4 @@
+LoadPlugin exec
+<Plugin exec>
+        Exec "<username_with_root_sudo_privileges>" "/path/to/iostat.sh" "da"
+</Plugin>
