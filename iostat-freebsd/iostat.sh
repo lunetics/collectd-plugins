@@ -53,6 +53,4 @@ do
             print "PUTVAL " host "/iostat-" $10 "/iostat_busy" " interval=" interval  " N:" $9;
 
         }'
-
-        sleep ${COLLECTD_INTERVAL:-10} || true;
 done
