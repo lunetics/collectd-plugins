@@ -2,6 +2,13 @@ About
 =====
 This plugin captures the FreeBSD gstat output and parses it.
 
+Requirements
+============
+The Exec user for the plugin must have sudo access to this script. This can be done by a simple entry in the sudoers file.
+```
+    username ALL = (root) NOPASSWD: /usr/sbin/gstat
+```
+
 Installation
 ============
 
@@ -11,7 +18,7 @@ Installation
     ...
     PluginDir   "${exec_prefix}/lib/collectd"
     TypesDB     "/usr/local/share/collectd/types.db"
-    TypesDB	"/usr/local/share/collectd-plugins/iostat/types.db"
+    TypesDB	    "/usr/local/share/collectd-plugins/iostat/types.db"
     ...
 ```
 
