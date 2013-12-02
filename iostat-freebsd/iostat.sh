@@ -49,7 +49,7 @@ do
             print "PUTVAL " host "/iostat-" $10 "/iostat_iops" " interval=" interval  " N:" $3 ":" $6;
             print "PUTVAL " host "/iostat-" $10 "/iostat_iops_complex" " interval=" interval  " N:" $2;
             print "PUTVAL " host "/iostat-" $10 "/iostat_transaction_time" " interval=" interval  " N:" $5 ":" $8;
-            print "PUTVAL " host "/iostat-" $10 "/iostat_kbps" " interval=" interval  " N:" $4 ":" $7 ;
+            print "PUTVAL " host "/iostat-" $10 "/iostat_mbps" " interval=" interval  " N:" $4 / 1024 ":" $7 / 1024 ;
             print "PUTVAL " host "/iostat-" $10 "/iostat_busy" " interval=" interval  " N:" $9;
 
         }'
