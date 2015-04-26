@@ -45,6 +45,7 @@ while true
 do
 
         `which sudo` `which gstat` -b $(if ! [ -z $filter ]; then echo "-f $filter"; fi) -I ${COLLECD_HOSTNAME:-10}s| sed '1,2d' | awk -v host=${COLLECTD_HOSTNAME:=`hostname -f`} -v interval=${COLLECTD_INTERVAL:-10} '{
+            gsub("/","-",$10)
             print "PUTVAL " host "/iostat-" $10 "/iostat_tql" " interval=" interval  " N:" $1;
             print "PUTVAL " host "/iostat-" $10 "/iostat_iops" " interval=" interval  " N:" $3 ":" $6;
             print "PUTVAL " host "/iostat-" $10 "/iostat_iops_complex" " interval=" interval  " N:" $2;
